@@ -1,7 +1,7 @@
-import {boolean, radios, text, withKnobs} from '@storybook/addon-knobs';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 import { html, render } from 'lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
@@ -23,22 +23,28 @@ const ctxInverted = {
 };
 
 export const Notification = () => {
-  const notifText = text('Text', 'In addition to cookies which are necessary for the proper functioning of websites, subject to your preferences, we use data or cookies on your browser');
+  const notifText = text(
+    'Text',
+    'In addition to cookies which are necessary for the proper functioning of websites, ' +
+      'subject to your preferences, we use data or cookies on your browser'
+  );
   const contexts = radios('Level', ctxInverted, 'success');
   const buttontext = text('buttontext', 'Schaden melden');
   const buttonlink = text(
     'Button link',
     'https://axa.ch/de/informationen/datenschutz.html'
   );
-  const noIcon = boolean(
-    'no icon',
-    false
-  );
+  const noIcon = boolean('no icon', false);
 
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-notification context="${contexts}" buttontext="${buttontext}" buttonlink="${buttonlink}" ?noicon="${noIcon}" >
+    <axa-notification
+      context="${contexts}"
+      buttontext="${buttontext}"
+      buttonlink="${buttonlink}"
+      ?noicon="${noIcon}"
+    >
       ${unsafeHTML(notifText)}
     </axa-notification>
     <h1>Real heading</h1>

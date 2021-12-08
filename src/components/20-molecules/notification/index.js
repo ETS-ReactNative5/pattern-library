@@ -8,7 +8,6 @@ import childStyles from './child.scss';
 const elTagName = 'axa-notification';
 
 class AXANotification extends InlineStyles {
-
   static get tagName() {
     return elTagName;
   }
@@ -41,7 +40,7 @@ class AXANotification extends InlineStyles {
     super();
     applyDefaults(this);
 
-    document.onclick = (e) => {
+    document.onclick = e => {
       if (e.target.tagName.toLowerCase() !== elTagName) {
         this.onClose();
       }
@@ -49,7 +48,7 @@ class AXANotification extends InlineStyles {
   }
 
   handleButtonClick() {
-    location.href = this.buttonlink;
+    window.location.href = this.buttonlink;
   }
 
   getIcon(ctx) {
@@ -67,9 +66,7 @@ class AXANotification extends InlineStyles {
   }
 
   onClose() {
-    const notifContent = this.shadowRoot.querySelector(
-      '.a-notif'
-    );
+    const notifContent = this.shadowRoot.querySelector('.a-notif');
 
     notifContent.style.maxHeight = 0;
     setTimeout(() => {
@@ -86,46 +83,49 @@ class AXANotification extends InlineStyles {
         <div class="a-notif-flex">
           <div></div>
           <div class="a-notif-content">
-            
-            ${ !noicon
+            ${!noicon
               ? html`
-              <div class="a-notif-icon">
-                <axa-icon icon="${icon}"></axa-icon>
-              </div>
-            `
+                  <div class="a-notif-icon">
+                    <axa-icon icon="${icon}"></axa-icon>
+                  </div>
+                `
               : html`
-                <div class="a-notif-icon-empty"></div>
-              `
-            }
-            
+                  <div class="a-notif-icon-empty"></div>
+                `}
+
             <div class="a-notif-content-text">
               <slot></slot>
             </div>
-            ${ buttontext && buttonlink
+            ${buttontext && buttonlink
               ? html`
-              <div class="a-notif-content-button">
-                <axa-button size="small" variant="inverted" @click="${this.handleButtonClick}">${buttontext}</axa-button>
-              </div>
-            `
-              : null
-            }
+                  <div class="a-notif-content-button">
+                    <axa-button
+                      size="small"
+                      variant="inverted"
+                      @click="${this.handleButtonClick}"
+                      >${buttontext}</axa-button
+                    >
+                  </div>
+                `
+              : null}
           </div>
-          <div class="a-notif-close"
-               @click="${this.onClose}"
-          >
+          <div class="a-notif-close" @click="${this.onClose}">
             <axa-icon icon="close"></axa-icon>
-          </div>          
+          </div>
         </div>
 
-        ${ buttontext && buttonlink
+        ${buttontext && buttonlink
           ? html`
               <div class="a-notif-content-button-mobile">
-                <axa-button size="small" variant="inverted" @click="${this.handleButtonClick}">${buttontext}</axa-button>
+                <axa-button
+                  size="small"
+                  variant="inverted"
+                  @click="${this.handleButtonClick}"
+                  >${buttontext}</axa-button
+                >
               </div>
             `
-          : null
-        }        
-        
+          : null}
       </div>
     `;
   }

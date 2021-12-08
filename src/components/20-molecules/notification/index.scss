@@ -1,4 +1,5 @@
 $mediaquery-mobile-up: 411px;
+$mediaquery-tablet-up: 991px;
 
 .a-notif {
   color: white;
@@ -87,6 +88,15 @@ $mediaquery-mobile-up: 411px;
     margin-left: 28px;
   }
 
+  @include breakpoint($mediaquery-tablet-up) {
+    div.a-notif-icon,
+    div.a-notif-close,
+    div.a-notif-icon-empty {
+      min-width: 56px;
+      justify-content: center;
+    }
+  }
+
   @include breakpoint($mediaquery-mobile-up) {
     padding: 12px;
     top: 0;
@@ -95,17 +105,25 @@ $mediaquery-mobile-up: 411px;
     .a-notif-content-button,
     .a-notif-close {
       display: flex;
-      justify-content: center;
       align-items: center;
     }
 
-    .a-notif-icon,
-    .a-notif-close {
-      min-width: 56px;
+    .a-notif-content-button {
+      justify-content: center;
     }
 
+    .a-notif-icon {
+      justify-content: end;
+    }
+
+    .a-notif-close {
+      justify-content: start;
+    }
+
+    .a-notif-icon,
+    .a-notif-close,
     .a-notif-icon-empty {
-      min-width: 56px;
+      min-width: 40px;
     }
 
     .a-notif-content-text {

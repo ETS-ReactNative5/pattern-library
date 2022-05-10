@@ -17,6 +17,7 @@ src/static
 
 # Ignore auto generated files
 node_modules
+storybook-static
 package-lock.json
 lib
 dist
